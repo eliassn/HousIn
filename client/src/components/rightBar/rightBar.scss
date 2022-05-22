@@ -1,0 +1,17 @@
+.top{
+    display: flex;
+   
+    ul{
+        li{
+            display: flex;
+            cursor: pointer;
+            
+        }
+    }
+    #search{
+        display: flex;
+        flex-direction: column;
+        
+        
+    }
+}

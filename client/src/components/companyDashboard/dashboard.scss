@@ -1,0 +1,115 @@
+.dashboard{
+    display: flex;
+    .container{
+        flex: 6;
+        display: flex;
+        flex-direction: column;
+        margin-top: 7%;
+        margin-bottom: 7%;
+        margin-right: 2%;
+        margin-left: 2%;
+        .upper{
+            flex:5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .upperLeft{
+                flex: 5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              
+                height: 100%;
+               
+                border-radius: 20px;
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+                
+                    
+                
+                .LineChart{
+                    width: 100%;
+                    height: 100%;
+                }
+
+            }
+            .upperRight{
+                flex: 5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                
+                border-radius: 20px;
+                margin-left: 7px;
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+            }
+        }
+        .down{
+            flex: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .downLeft{
+                flex: 5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                height: 100%;
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+                border-radius: 20px;
+            }
+            .downRight{
+                flex: 5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                height: 100%;
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+                border-radius: 20px;
+                margin-left: 7px;
+            }
+        }
+    }
+    .sidebar{
+        flex: 1;
+        height: 650px;
+    }
+}
+@media (max-width:500px){
+    .dashboard{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        right: 0;
+        left: 0;
+        .sidebar{
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+           
+            .upper{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                
+            }
+            .down{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+        }
+    }
+}
