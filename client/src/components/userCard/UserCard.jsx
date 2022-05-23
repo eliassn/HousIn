@@ -7,19 +7,19 @@ const UserCard = () => {
   var identifiers = ['star1','star2','star3','star4','star5']
   var stars = {
     'star1': function(){
-      document.getElementById(identifiers[0]).style.color = "#D7BE69"
+      document.getElementById(identifiers[0]).style.color = "#B20600"
     },
     'star2':function(){
-      document.getElementById(identifiers[1]).style.color = "#D7BE69"
+      document.getElementById(identifiers[1]).style.color = "#B20600"
     },
     'star3': function(){
-      document.getElementById(identifiers[2]).style.color = "#D7BE69"
+      document.getElementById(identifiers[2]).style.color = "#B20600"
     },
     'star4': function(){
-      document.getElementById(identifiers[3]).style.color = "#D7BE69"
+      document.getElementById(identifiers[3]).style.color = "#B20600"
     },
     'star5': function(){
-      document.getElementById(identifiers[4]).style.color = "#D7BE69"
+      document.getElementById(identifiers[4]).style.color = "#B20600"
     },
   }
 

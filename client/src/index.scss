@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    left: 0;
+    right: 0;
 }
 img{
     max-width: 100%;
@@ -65,6 +67,7 @@ ul{
     
     position: sticky ;
     top: 0;
+    right: 0;
     .links{
         display: inline-block;
         align-items: center;
@@ -271,6 +274,13 @@ ul{
     color: "#000";
 }
 @media (max-width:500px){
+    *{
+        margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+    }
   
     .user{
         width: 100%;
@@ -293,7 +303,7 @@ ul{
             align-items: center;
             justify-content: center;
             flex-direction: row;
-            width: inherit;
+            width: 100%;
             background-color: #fff;
         }
            
@@ -349,10 +359,10 @@ ul{
      display: flex;
      align-items: center;
      flex-direction: column;
-     
+     margin: 0;
      padding: 0;
      .card{
-         width: 400px;
+         width: 350px;
  display: flex;
  align-items: center;
  flex-direction: column;
