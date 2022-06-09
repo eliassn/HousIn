@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import './rightBar.scss'
-import {Publish,Create} from '@mui/icons-material'
+import {Publish,Create, CreateOutlined} from '@mui/icons-material'
 import ModalForm from '../modal/ModalForm'
 import ReusableForm from '../../reusableForm/ReusableForm'
 const RightBar = () => {
@@ -11,7 +11,7 @@ const RightBar = () => {
             <ul>
                 <li onClick={()=>{
             setOpenPopup(true)
-        }}><Create/><span>Crée une publication</span></li>
+        }}><CreateOutlined style={{color:"#1976d2"}}/><span>Crée une publication</span></li>
               
             </ul>
         </div>

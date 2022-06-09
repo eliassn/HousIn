@@ -1,6 +1,6 @@
 import React from 'react'
 import './sidebar.scss'
-import {Person,Email,Work,LocationOn} from '@mui/icons-material'
+import {Person,Email,Work,LocationOn, PersonOutlined, EmailOutlined, LocationOnOutlined} from '@mui/icons-material'
 import { UserData } from '../UserMockData'
 const Sidebar = () => {
   return (
@@ -17,9 +17,9 @@ const Sidebar = () => {
           </div>
             <ul>
             
-                <li><Person/><span>{UserData.fullName}</span></li>
-                <li><Email/><span>{UserData.email}</span></li>
-                <li><LocationOn/><span>{UserData.location}</span></li>
+                <li><PersonOutlined className='sideIcons'/><span>{UserData.fullName}</span></li>
+                <li><EmailOutlined className='sideIcons'/><span>{UserData.email}</span></li>
+                <li><LocationOnOutlined className='sideIcons'/><span>{UserData.location}</span></li>
                 
             </ul>
         </div>

@@ -6,7 +6,6 @@ import UserCard from '../../userCard/UserCard'
 import Sidebar from '../../../sidebar/Sidebar'
 import RightBar from '../../rightBar/RightBar'
 
-  
 const User = () => {
  
   
@@ -18,7 +17,10 @@ const User = () => {
 
     <Sidebar/>
       </div>
-   <div className="container"><UserCard/></div>
+   <div className="container">
+   
+   
+     <UserCard/></div>
    <div className="right"><RightBar/></div>
     </div>
   )

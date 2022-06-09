@@ -10,20 +10,29 @@ import './index.scss'
 import Error from './components/error/Error'
 import User from './components/profile/user/User'
 import UserHeader from './components/UserHeader/UserHeader'
-import Dashboard from './components/companyDashboard/Dashboard'
+import { useSelector } from 'react-redux'
+import Timeline from './components/timeline/Timeline'
+
 
 const App = () => {
+  const isRegistered = useSelector(state=>state.register.isRegistered)
+  const isLoggedIn = useSelector(state=>state.login.isLoggedIn)
+  console.log("loggedIn= ",isLoggedIn)
+  console.log("isRegistered= ",isRegistered)
   return (
     <div>
+      
      <Router>
       
-       {/* <Header/> */}
-       <UserHeader/>
+     {/* {!isLoggedIn && <Header/>} */}
+      <UserHeader/>
+       
        <Routes>
-
+        <Route path='timeline' element={<Timeline/>}/>
        <Route exact path="/" element={ <><Landing/><Places/></>}/>
-        
-       <Route path=":id/user" element={<User/>}/>
+       
+       <Route path=":user_id/user" element={<User/>}/>
+       {/* <Route path=":user_id/profile" element={<NewProfile/>}/> */}
        
       
        <Route path="/login" element={  <Login/>}/>

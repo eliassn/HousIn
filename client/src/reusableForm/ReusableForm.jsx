@@ -1,9 +1,74 @@
-import { Input, LocationCityOutlined, LocationOn, PersonOutline, PhoneOutlined, PhotoCamera, PhotoCameraOutlined, PriceCheckOutlined } from '@mui/icons-material'
+import { DescriptionOutlined, Input, LocationCityOutlined, LocationOn, MergeTypeOutlined, PersonOutline, PhoneOutlined, PhotoCamera, PhotoCameraOutlined, PriceCheckOutlined } from '@mui/icons-material'
 import { Button, Select } from '@mui/material'
-import React from 'react'
+import axios from 'axios'
+import React,{useState} from 'react'
 import './reusableForm.scss'
 
+
 const ReusableForm = () => {
+  
+  const [modalData,setModalData] = useState({
+    photos:[],
+    price:"",
+    type:"",
+    tel:"",
+    place:"",
+    description:""
+  })
+ 
+  const {photos,price,type,tel,place,description} = modalData
+  const uploadImage =  (e)=>{
+    
+   var fileArr = [e.target.files]
+   console.log(fileArr)
+    fileArr.forEach(file=>{
+      photos.push(file)
+      console.log(photos)
+    })
+    setModalData({...modalData,photos})
+    console.log(modalData.photos)
+  }
+
+  const handleChange = e =>{
+    setModalData({...modalData,[e.target.name]:e.target.value})
+    console.log("changed")
+    var select = document.getElementById('place')
+    var option  = document.getElementById('gov')
+    console.log("select=",select.value,"option=",option.value)
+  }
+
+  const handleSubmit = async (e) =>{
+   
+
+    
+    e.preventDefault()
+    var path = window.location.pathname.split('/')
+    const user_id  = path[1]
+    console.log(user_id)
+    var url = `http://localhost:9000/${user_id}/user`
+    const newPub = {
+      photos,
+      price,
+      type,
+      tel,
+      place,
+      description
+    }
+    
+    try {
+      const config = {
+        "headers":{
+          "Content-Type":"application/json"
+        }
+      }
+      var body = JSON.stringify(newPub)
+      console.log(body)
+      var res = await axios.post(url,body,config)
+      console.log(res.data)
+    } catch (error) {
+      console.error(error.response.data)
+    }
+  }
     const Gouvernorats = ["Gouvernorat de l'Ariana",
     "Gouvernorat de Béja",
     "Gouvernorat de Ben Arous",
@@ -30,27 +95,32 @@ const ReusableForm = () => {
     "Gouvernorat de Zaghouan"]
   return (
     <div>
-        <form action="" className='reuseForm'>
+        <form onSubmit={handleSubmit}  className='reuseForm'>
             <div className="inputFields">
             <label><PhotoCameraOutlined/>Images*</label>
-                <input type='file'  multiple required/>
-                <label><PersonOutline/>NOM*</label>
-                <input type='text' placeholder='taper votre nom' required/>
+                <input type="file" multiple name="photos" onChange={(e)=>{uploadImage(e)}}/>
+                <label><MergeTypeOutlined/>type*</label>
+                <input type='text' name='type' value={type}  placeholder='s + 1' onChange={handleChange}required/>
                 <label><PriceCheckOutlined/>Prix*</label>
-                <input type='text' placeholder='prix' required />
+                <input type='text' name='price' onChange={handleChange} placeholder='prix' value={price}  required />
                 <label><PhoneOutlined/>Téléphone*</label>
-                <input type='tel' placeholder='téléphone' required/>
+                <input type='tel' name='tel' value={tel} onChange={handleChange} placeholder='téléphone' required/>
                 <label><LocationOn/>Gouvernorat*</label>
-                <select>
+                <select id='place' name='place' value={place} onChange={handleChange}>
                    {Gouvernorats.map(gov=>{
-                       return <option>{gov}</option>
+                       return <option id='gov' key={gov} value={gov}>{gov}</option>
                    })}
                 </select>
-                <label><LocationCityOutlined/>Ville*</label>
-                <input type='text' placeholder='ville' required/>
+                <label><DescriptionOutlined/>Description*</label>
+                <input type='text' name='description' placeholder='description' onChange={handleChange} value={description} required/>
             </div>
            <Button type='submit'>Publier</Button>
-           <Button type='reset'>Reset</Button>
+           <Button type='reset' onClick={()=>{
+             
+               var input = document.getElementsByTagName('input')
+               input.value= ""
+             
+           }}>Reset</Button>
         </form>
     </div>
   )

@@ -1,0 +1,37 @@
+.newProfile{
+    display: flex;
+    flex-direction: column;
+    height: 730px;
+    .up{
+        background-image: url('../../assets/pexels-pixabay-415687.jpg');
+        display: flex;
+        flex-direction: column;
+        flex:5;
+        height: 100%;
+        .photo{
+            
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                flex: 1;
+                .img{
+                    border: 1px solid grey;
+                    border-radius: 50%;
+                    display: block;
+                    width: 80px;
+                    height: 80px;
+                    overflow: hidden;
+                    img{
+                        width: 100px;
+                        height: 100px;
+                    }
+                }
+            }
+        
+    }
+    .down{
+        display: flex;
+        flex: 5;
+    }
+}

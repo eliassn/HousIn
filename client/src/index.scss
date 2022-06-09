@@ -11,6 +11,9 @@ img{
 ul{
     list-style-type: none;
 }
+.card{
+    background-color: #333;
+}
 ///
 .cardContent{
     display: flex;
@@ -21,7 +24,7 @@ ul{
     width: 100%;
     background-color: 
     #fff;
-     color: #000;
+    
 
 }
 .cardActions{
@@ -42,10 +45,13 @@ ul{
     }
 }
 ///
-
 .muiCard{
+    width: fit-content;
+    margin-top: 10%;
+    margin-bottom: 5%;
     width: 100%;
-    margin: 0;
+   
+
 }
 .middle{
     display: flex;
@@ -57,13 +63,21 @@ ul{
     width: 100%;
 }
 ///
+select{
+    height: 40px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+
 .header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background-color: #fff;
+    background-color: #333;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    
     
     position: sticky ;
     top: 0;
@@ -85,6 +99,7 @@ ul{
     display: inline-block;
     text-align: center;
     margin-right: 5px;
+    margin-left: 0%;
     background-color:#c00 ;
         }
         p{
@@ -150,10 +165,11 @@ ul{
 }
 .user{
     display: flex;
+    background-color: #333;
     .sidebar{
         flex:1.5;
         background-color: 
-       #999999;
+       #333;
         color: #000;
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
         
@@ -165,16 +181,21 @@ ul{
         justify-content: center;
         margin-left: 20px;
         margin-top: 10px;
+        background-color: #333;
     }
     .right{
        flex:2;
        margin-left: 20px;
+       background-color: #333;
     }
 }
 ///
 .body2{
     display: flex;
     ul{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
         li{
             display: flex;
             color: #000;
@@ -260,18 +281,58 @@ ul{
 
    
         
-       
+    .personIcon{
+        color: #1976d2;
+    }   
             
         
         
-    
-    
+    .icon3{
+        color: #c00;
+    }
+    .personDiv{
+        float: left;
+    }
    
 
 //stars
 #star{
     cursor: pointer;
     color: "#000";
+}
+.sideIcons{
+    color: #1976d2;
+}
+.ImgDiv{
+
+
+    .FbGridImg{
+        width: 400px;
+    }
+
+}
+.grid-container{
+    display: grid;
+    grid-template-columns:200px 250px;
+    grid-auto-rows: minmax(150px, auto) ;
+    grid-gap: 10px;
+    grid-template-areas:
+    "header header"
+      "sidebar content"
+      "sidebar content"
+    ;
+
+}
+.grid-item-1{
+    grid-column-start: 1;
+    grid-column-end:-1 ;
+    // grid-area:header;
+}
+.grid-item-2{
+    grid-area: sidebar;
+}
+.grid-item-3{
+    grid-area: content;
 }
 @media (max-width:500px){
     *{
@@ -304,7 +365,8 @@ ul{
             justify-content: center;
             flex-direction: row;
             width: 100%;
-            background-color: #fff;
+            background-color: #333;
+            
         }
            
     }
@@ -313,7 +375,7 @@ ul{
         align-items: center;
         justify-content: center;
         flex-direction: row;
-        background-color: #fff;
+        background-color: #333;
         float: left;
 
         .top{
@@ -353,6 +415,7 @@ ul{
 
         }
     }
+    
    
  .middle{
      width: 100%;
@@ -361,13 +424,21 @@ ul{
      flex-direction: column;
      margin: 0;
      padding: 0;
+     background-color: #333;
+     
      .card{
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+       
          width: 350px;
+         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+         
  display: flex;
  align-items: center;
  flex-direction: column;
+ background-color: #333;
  .cardContent{
-     padding: 0;
+     padding: 10px;
+     
  }
      }
  }
@@ -393,6 +464,7 @@ ul{
         justify-content: center;
         flex-direction: row;
         float: left;
+       
         .navbar{
             display: flex;
             align-self: center;
@@ -459,5 +531,8 @@ ul{
                 width: 30vh;
             }
         }
+    }
+    select{
+        width:30vh;
     }
 }
