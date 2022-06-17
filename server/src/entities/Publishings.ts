@@ -9,7 +9,8 @@ export class Pubs {
 @PrimaryGeneratedColumn('increment')
 id!:number
 @Column("character varying",{array:true,nullable:true})
-photos!:string
+photos!:string[]
+
 @Column()
 price!:string
 @Column()

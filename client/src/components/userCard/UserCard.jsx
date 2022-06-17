@@ -13,6 +13,7 @@ const UserCard = () => {
   
  
 const [pubData,setPubData] = useState([])
+const [images,setImages] = useState([])
 
 useEffect(()=>{
   async function fetchDataPubs(){
@@ -30,7 +31,9 @@ useEffect(()=>{
   }
  res = await axios.get(`http://localhost:9000/${trimmedPath}/user`)
 
+console.log(res.data)
 setPubData(res.data)
+
   }
   fetchDataPubs()
 },[])
@@ -46,6 +49,7 @@ const usePubs = pubData.map((pub)=>{
   sx={{ borderRadius: '16px',border:'20px solid white' }}
   className='muiCard'>
   {/* */}
+  {/* <img src={pub.photos} style={{width:'200px',height:'200px'}} /> */}
   <Photogrid 
   width='100%'
   

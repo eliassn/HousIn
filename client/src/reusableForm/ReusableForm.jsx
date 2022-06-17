@@ -23,10 +23,11 @@ const ReusableForm = () => {
    console.log(fileArr)
     fileArr.forEach(file=>{
       photos.push(file)
-      console.log(photos)
+      
     })
-    setModalData({...modalData,photos})
-    console.log(modalData.photos)
+    setModalData({...modalData,photos:e.target.files})
+    console.log(photos)
+    
   }
 
   const handleChange = e =>{
@@ -46,24 +47,26 @@ const ReusableForm = () => {
     const user_id  = path[1]
     console.log(user_id)
     var url = `http://localhost:9000/${user_id}/user`
-    const newPub = {
-      photos,
-      price,
-      type,
-      tel,
-      place,
-      description
+    
+    var formData = new FormData()
+    for(let i = 0;i<photos.length;i++){
+      formData.append('photos',photos[i])
     }
+    formData.append('price',price)
+    formData.append('type',type)
+    formData.append('tel',tel)
+    formData.append('place',place)
+    formData.append('description',description)
     
     try {
       const config = {
         "headers":{
-          "Content-Type":"application/json"
+          "Content-Type":"multipart/form-data"
         }
       }
-      var body = JSON.stringify(newPub)
-      console.log(body)
-      var res = await axios.post(url,body,config)
+      
+     
+      var res = await axios.post(url,formData,config)
       console.log(res.data)
     } catch (error) {
       console.error(error.response.data)

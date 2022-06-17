@@ -12,6 +12,7 @@ import User from './components/profile/user/User'
 import UserHeader from './components/UserHeader/UserHeader'
 import { useSelector } from 'react-redux'
 import Timeline from './components/timeline/Timeline'
+import CssGridTest from './components/CssGridTest'
 
 
 const App = () => {
@@ -33,7 +34,7 @@ const App = () => {
        
        <Route path=":user_id/user" element={<User/>}/>
        {/* <Route path=":user_id/profile" element={<NewProfile/>}/> */}
-       
+       <Route path='grid' element={<CssGridTest/>}/>
       
        <Route path="/login" element={  <Login/>}/>
       
