@@ -19,6 +19,10 @@ export class User{
     password!:string
     @Column()
     job!:string
+    @Column()
+    token!:string
+    @Column()
+    picture!:string
     @Column("boolean",{default:false})
     isCompany!:boolean
     // @Column({array:true})

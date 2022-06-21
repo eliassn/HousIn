@@ -2,12 +2,16 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { loginActions } from '../../redux/loginSlice'
+import { userActions } from '../../redux/userSlice'
 
 
 
 
 const Login = () => {
+  // var cookies = document.cookie._hjSessionUser_171201
+  // console.log(cookies)
 const dispatch = useDispatch()
+// const [user,setUser] = useState(null)
 const [login,setLogin] = useState({
   email:"",
   password:""
@@ -28,17 +32,25 @@ const handleSubmit = async (e) =>{
   try {
     var config = {
       "headers":{
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
+       
+        
       }
     }
+   
     const body = JSON.stringify(existingUser)
    const res =  await axios.post(url,body,config)
+   
+ var user = dispatch(userActions.setUser(res.data))
+  console.log()
+
+  console.log(user)
   //  const id = res.data.uid
   //  console.log(id)
-   console.log(res.data)
+ 
    dispatch(loginActions.login())
-  window.location.replace(`${res.data}/user`)
-   return res
+  window.location.replace(`${res.data.uid}/user`)
+  //  return res
   } catch (error) {
     console.error(error.response.data)
   }

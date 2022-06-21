@@ -25,11 +25,15 @@ useEffect(()=>{
 
     var res = await axios.get("http://localhost:9000/allPubs")
     var pubs =  JSON.stringify(res.data[0][0])
-    
+     
      return setPubData(res.data[0])
 
   }
- res = await axios.get(`http://localhost:9000/${trimmedPath}/user`)
+ res = await axios.get(`http://localhost:9000/${trimmedPath}/user`,{
+  headers:{
+    
+  }
+})
 
 console.log(res.data)
 setPubData(res.data)
@@ -52,7 +56,7 @@ const usePubs = pubData.map((pub)=>{
   {/* <img src={pub.photos} style={{width:'200px',height:'200px'}} /> */}
   <Photogrid 
   width='100%'
-  
+  height='100%'
   images={pub.photos}>
       
       </Photogrid>

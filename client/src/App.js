@@ -13,6 +13,7 @@ import UserHeader from './components/UserHeader/UserHeader'
 import { useSelector } from 'react-redux'
 import Timeline from './components/timeline/Timeline'
 import CssGridTest from './components/CssGridTest'
+import Messages from './components/messages/Messages'
 
 
 const App = () => {
@@ -25,8 +26,8 @@ const App = () => {
       
      <Router>
       
-     {/* {!isLoggedIn && <Header/>} */}
-      <UserHeader/>
+     <Header/>
+      {/* <UserHeader/> */}
        
        <Routes>
         <Route path='timeline' element={<Timeline/>}/>
@@ -38,7 +39,7 @@ const App = () => {
       
        <Route path="/login" element={  <Login/>}/>
       
-       
+       <Route path="/inbox" element={  <Messages/>}/>
        <Route path="signup" element={ <SignUp/>}/>
        <Route path="*" element={<Error/>}/>
        </Routes>

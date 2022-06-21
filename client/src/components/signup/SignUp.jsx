@@ -10,15 +10,26 @@ const [formData,setFormData] = useState({
   firstName: "",
   lastName:"",
   phone:"",
-  gender:"",
+  picture:[],
   job:"",
   isCompany:false,
   email: "",
   password : "",
   password2 : ""
 })
-const {firstName,lastName,phone,gender,job,isCompany,email,password,password2} = formData
-
+const {firstName,lastName,phone,picture,job,isCompany,email,password,password2} = formData
+const uploadImage =  (e)=>{
+    
+  var fileArr = [e.target.files]
+  console.log(fileArr)
+   fileArr.forEach(file=>{
+     picture.push(file)
+     
+   })
+   setFormData({...formData,picture:e.target.files[0]})
+   console.log(picture)
+   
+ }
 const handleChange = e => {
  setFormData({...formData,[e.target.name]:e.target.value})
   
@@ -32,25 +43,34 @@ const handleChange = e => {
       console.log("passwords do not match")
       return
     }
-    const newUser = {
-      firstName,
-      lastName,
-      phone,
-      gender,
-      job,
-      isCompany,
-      email,
-      password
-    }
+    var formData = new FormData()
+    formData.append('firstName',firstName)
+    formData.append('lastName',lastName)
+    formData.append('phone',phone)
+    formData.append('picture',picture)
+    formData.append('job',job)
+    formData.append('isCompany',isCompany)
+    formData.append('email',email)
+    formData.append('password',password)
+    // const newUser = {
+    //   firstName,
+    //   lastName,
+    //   phone,
+    //   picture,
+    //   job,
+    //   isCompany,
+    //   email,
+    //   password
+    // }
     try {
       const config={
        "headers":{
         "Content-Type":"application/json"
        }
       }
-      const body = JSON.stringify(newUser)
-      console.log(body)
-      const res = await axios.post(url,body,config)
+      // const body = JSON.stringify(newUser)
+      // console.log(body)
+      const res = await axios.post(url,formData,config)
       console.log(res.data)
     } catch (err) {
       console.error(err.response.data)
@@ -63,9 +83,12 @@ const handleChange = e => {
      <section className="landing login">
        <div className="overlay">
          <form onSubmit={handleSubmit} className="form">
+
            <input type="text" name="firstName" value={firstName} id="fname" placeholder='nom' onChange={handleChange} required/>
            <input type="text" name="lastName" value={lastName} id="lname" placeholder='prénom' onChange={handleChange} required/>
-           <input type="tel" name="phone" value={phone} id="tel" placeholder='téléphone' onChange={handleChange} required/>
+            <input type="tel" name="phone" value={phone} id="tel" placeholder='téléphone' onChange={handleChange} required/>
+           <label>photo de profil</label>
+           <input type="file" name="picture" onChange={(e)=>uploadImage(e)}/>
            {/* <select name="" onChange={handleChange}  id="">
              <option value="homme">Homme</option>
              <option value="femme">Femme </option>

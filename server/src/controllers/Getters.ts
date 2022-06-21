@@ -32,8 +32,7 @@ try {
      var user_id : any  = req.params.user_id
      console.log(user_id)
      try {
-        console.log("pbu")
-        console.log("pbu")
+       
          const pubsByUserId = await pubsRepo.findBy({userId:user_id})
          console.log("pbu",pubsByUserId)
          

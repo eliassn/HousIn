@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createPub, testUploadImgWithMulter } from "../controllers/pubs";
+import { verifyToken } from "../controllers/Auth";
 import multer from 'multer'
 import path from 'path'
 import { uploadS3 } from "../controllers/pubs";
@@ -16,7 +17,7 @@ const upload = multer({ storage })
 
 var pubRouter = Router()
 
-pubRouter.post('/:user_id/user',uploadS3("chelbi-housin").array('photos'),createPub)
+pubRouter.post('/:user_id/user',uploadS3("chelbi-housin").array('photos'),verifyToken,createPub)
 
 pubRouter.post('/images',testUploadImgWithMulter)
 

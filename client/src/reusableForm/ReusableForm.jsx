@@ -61,7 +61,8 @@ const ReusableForm = () => {
     try {
       const config = {
         "headers":{
-          "Content-Type":"multipart/form-data"
+          "Content-Type":"multipart/form-data",
+          
         }
       }
       
