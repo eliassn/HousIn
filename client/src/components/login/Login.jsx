@@ -11,7 +11,7 @@ const Login = () => {
   // var cookies = document.cookie._hjSessionUser_171201
   // console.log(cookies)
 const dispatch = useDispatch()
-// const [user,setUser] = useState(null)
+const [user,setUser] = useState(null)
 const [login,setLogin] = useState({
   email:"",
   password:""
@@ -21,6 +21,8 @@ const handleChange = e =>{
   setLogin({...login,[e.target.name]:e.target.value})
 
 }
+
+
 
 const handleSubmit = async (e) =>{
   e.preventDefault()
@@ -33,6 +35,7 @@ const handleSubmit = async (e) =>{
     var config = {
       "headers":{
         "Content-Type":"application/json",
+        
        
         
       }
@@ -40,11 +43,26 @@ const handleSubmit = async (e) =>{
    
     const body = JSON.stringify(existingUser)
    const res =  await axios.post(url,body,config)
-   
- var user = dispatch(userActions.setUser(res.data))
-  console.log()
 
-  console.log(user)
+// }).catch(err => {
+//   console.error(err);
+  // ('Error login in please try again!');;
+  
+  
+  
+   const authToken = res.data.token
+   localStorage.setItem('token',authToken)
+   const refresh = res.data.refreshToken
+   localStorage.setItem('refreshToken',refresh)
+   const userId = res.data.uid
+   console.log(userId)
+   localStorage.setItem('userId',userId)
+  //  console.log(authToken)
+   
+//  var user = dispatch(userActions.setUser(res.data))
+//   console.log()
+
+//   console.log(user)
   //  const id = res.data.uid
   //  console.log(id)
  

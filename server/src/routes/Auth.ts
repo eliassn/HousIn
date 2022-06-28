@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { register,login } from '../controllers/Auth'
+import { register,login, refreshToken, logout, verifyToken } from '../controllers/Auth'
 import dotenv from 'dotenv'
 import AWS from 'aws-sdk'
 import multerS3 from 'multer-s3'
@@ -34,3 +34,5 @@ var s3 : any = new AWS.S3({
 export const router = Router()
 router.post('/register',uploadS3("chelbi-housin").array('picture'),register)
 router.post('/login',login)
+router.post('/logout',logout)
+router.post('/refresh',refreshToken)

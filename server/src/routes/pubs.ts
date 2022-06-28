@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPub, testUploadImgWithMulter } from "../controllers/pubs";
+import { createPub, deletePub, getLikesByPbId, handleDisLikes, handleLikes } from "../controllers/pubs";
 import { verifyToken } from "../controllers/Auth";
 import multer from 'multer'
 import path from 'path'
@@ -19,7 +19,10 @@ var pubRouter = Router()
 
 pubRouter.post('/:user_id/user',uploadS3("chelbi-housin").array('photos'),verifyToken,createPub)
 
-pubRouter.post('/images',testUploadImgWithMulter)
 
+pubRouter.put('/:user_id/likes',handleLikes)
+pubRouter.put('/:user_id/dislikes',handleDisLikes)
+// pubRouter.get('/likes',getLikesByPbId)
+pubRouter.delete('/:user_id/delete',deletePub)
 
 export default pubRouter

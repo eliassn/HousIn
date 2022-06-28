@@ -18,16 +18,23 @@ import Messages from './components/messages/Messages'
 
 const App = () => {
   const isRegistered = useSelector(state=>state.register.isRegistered)
-  const isLoggedIn = useSelector(state=>state.login.isLoggedIn)
-  console.log("loggedIn= ",isLoggedIn)
+  // const isLoggedIn = useSelector(state=>state.login.isLoggedIn)
+  // const isLoggedOut = useSelector(state=>state.logout.isLoggedOut)
+  // console.log("loggedIn= ",isLoggedIn)
   console.log("isRegistered= ",isRegistered)
+  // console.log('loggedOut= ',isLoggedOut)
+  var url = "http://localhost:3000"
+  var loggedIn = typeof(window.location.pathname.split('/')[1]) === "number"
+  var loggedOut = typeof(window.location.pathname.split('/')[1]) !== "number"
+
+  const token = localStorage.getItem('token')
   return (
     <div>
       
      <Router>
       
-     <Header/>
-      {/* <UserHeader/> */}
+   <Header/>
+    {/* {token&&<UserHeader/>} */}
        
        <Routes>
         <Route path='timeline' element={<Timeline/>}/>

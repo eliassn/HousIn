@@ -3,20 +3,30 @@ import { Button, Select } from '@mui/material'
 import axios from 'axios'
 import React,{useState} from 'react'
 import './reusableForm.scss'
-
-
+import { countriesStates } from '../components/countriesAndStates/Countries'
+var states = []
+var countries = countriesStates.countries
+var stateMap = countries.forEach(country=>{
+  states.push(country.states)
+})
+console.log(states)
 const ReusableForm = () => {
   
   const [modalData,setModalData] = useState({
     photos:[],
     price:"",
+    likes:[],
     type:"",
     tel:"",
     place:"",
     description:""
   })
  
-  const {photos,price,type,tel,place,description} = modalData
+
+  const {photos,price,likes,type,tel,place,description} = modalData
+  
+  
+
   const uploadImage =  (e)=>{
     
    var fileArr = [e.target.files]
@@ -47,7 +57,7 @@ const ReusableForm = () => {
     const user_id  = path[1]
     console.log(user_id)
     var url = `http://localhost:9000/${user_id}/user`
-    
+    var reloadUrl = `http://localhost:3000/${user_id}/user`
     var formData = new FormData()
     for(let i = 0;i<photos.length;i++){
       formData.append('photos',photos[i])
@@ -57,48 +67,50 @@ const ReusableForm = () => {
     formData.append('tel',tel)
     formData.append('place',place)
     formData.append('description',description)
-    
+    const token = localStorage.getItem('token')
     try {
       const config = {
         "headers":{
           "Content-Type":"multipart/form-data",
-          
+         "x-access-token": token
         }
       }
       
      
       var res = await axios.post(url,formData,config)
       console.log(res.data)
+      window.location.replace(reloadUrl)
     } catch (error) {
       console.error(error.response.data)
     }
   }
-    const Gouvernorats = ["Gouvernorat de l'Ariana",
-    "Gouvernorat de Béja",
-    "Gouvernorat de Ben Arous",
-   " Gouvernorat de Bizerte",
-  "  Gouvernorat de Gabès",
-    "Gouvernorat de Gafsa",
-    "Gouvernorat de Jendouba",
-   " Gouvernorat de Kairouan",
-   " Gouvernorat de Kasserine",
-    "Gouvernorat de Kébili",
-   " Gouvernorat du Kef",
-    "Gouvernorat de Mahdia",
-    "Gouvernorat de Manouba",
-    "Gouvernorat de Médenine",
-    "Gouvernorat de Monastir",
-   " Gouvernorat de Nabeul",
-    "Gouvernorat de Sfax",
-   " Gouvernorat de Sidi Bouzid",
-    "Gouvernorat de Siliana",
-    "Gouvernorat de Sousse",
-    "Gouvernorat de Tataouine",
-    "Gouvernorat de Tozeur",
-    "Gouvernorat de Tunis",
-    "Gouvernorat de Zaghouan"]
+  //   const Gouvernorats = ["Gouvernorat de l'Ariana",
+  //   "Gouvernorat de Béja",
+  //   "Gouvernorat de Ben Arous",
+  //  " Gouvernorat de Bizerte",
+  // "  Gouvernorat de Gabès",
+  //   "Gouvernorat de Gafsa",
+  //   "Gouvernorat de Jendouba",
+  //  " Gouvernorat de Kairouan",
+  //  " Gouvernorat de Kasserine",
+  //   "Gouvernorat de Kébili",
+  //  " Gouvernorat du Kef",
+  //   "Gouvernorat de Mahdia",
+  //   "Gouvernorat de Manouba",
+  //   "Gouvernorat de Médenine",
+  //   "Gouvernorat de Monastir",
+  //  " Gouvernorat de Nabeul",
+  //   "Gouvernorat de Sfax",
+  //  " Gouvernorat de Sidi Bouzid",
+  //   "Gouvernorat de Siliana",
+  //   "Gouvernorat de Sousse",
+  //   "Gouvernorat de Tataouine",
+  //   "Gouvernorat de Tozeur",
+  //   "Gouvernorat de Tunis",
+  //   "Gouvernorat de Zaghouan"]
   return (
     <div>
+      
         <form onSubmit={handleSubmit}  className='reuseForm'>
             <div className="inputFields">
             <label><PhotoCameraOutlined/>Images*</label>
@@ -109,12 +121,25 @@ const ReusableForm = () => {
                 <input type='text' name='price' onChange={handleChange} placeholder='prix' value={price}  required />
                 <label><PhoneOutlined/>Téléphone*</label>
                 <input type='tel' name='tel' value={tel} onChange={handleChange} placeholder='téléphone' required/>
-                <label><LocationOn/>Gouvernorat*</label>
+                <label><LocationOn/>Pays*</label>
                 <select id='place' name='place' value={place} onChange={handleChange}>
-                   {Gouvernorats.map(gov=>{
-                       return <option id='gov' key={gov} value={gov}>{gov}</option>
+                   {countriesStates.countries.map(country=>{
+                      return  <option id='gov' key={country} value={country.country}>{country.country}</option>
+                      
                    })}
                 </select>
+                <select id='states' name='states' value={states} onChange={handleChange}>
+                   {countriesStates.countries.map(country=>{
+                      return  <option id='gov' key={country} value={country.country}>{country.country}</option>
+                      
+                   })}
+                </select>
+               
+               
+                  
+               
+              
+                
                 <label><DescriptionOutlined/>Description*</label>
                 <input type='text' name='description' placeholder='description' onChange={handleChange} value={description} required/>
             </div>

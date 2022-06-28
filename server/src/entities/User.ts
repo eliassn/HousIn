@@ -21,6 +21,8 @@ export class User{
     job!:string
     @Column()
     token!:string
+    @Column({nullable:true})
+    refreshToken!:string
     @Column()
     picture!:string
     @Column("boolean",{default:false})

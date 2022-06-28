@@ -10,7 +10,8 @@ export class Pubs {
 id!:number
 @Column("character varying",{array:true,nullable:true})
 photos!:string[]
-
+@Column("character varying",{array:true,nullable:true,default:[]})
+likes!:number[]
 @Column()
 price!:string
 @Column()
