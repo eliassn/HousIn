@@ -42,7 +42,7 @@ const Sidebar = () => {
             
                 <li><PersonOutlined className='sideIcons'/><span>{userData.firstName+' '+userData.lastName}</span></li>
                 <li><EmailOutlined className='sideIcons'/><span>{userData.email}</span></li>
-                <li><LocationOnOutlined className='sideIcons'/><span>{userData.place}</span></li>
+                <li><LocationOnOutlined className='sideIcons'/><span>{userData.nationality}</span></li>
                 
             </ul>
         </div>

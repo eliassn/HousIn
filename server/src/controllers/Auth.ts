@@ -22,6 +22,7 @@ if(files.length > 0){
         user.email = req.body.email
         user.password = hashedPassword
         user.job = req.body.job
+        user.nationality = req.body.nationality
         user.isCompany = req.body.isCompany
        
         const token = jwt.sign(

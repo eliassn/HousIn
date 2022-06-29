@@ -1,17 +1,50 @@
-import { DescriptionOutlined, Input, LocationCityOutlined, LocationOn, MergeTypeOutlined, PersonOutline, PhoneOutlined, PhotoCamera, PhotoCameraOutlined, PriceCheckOutlined } from '@mui/icons-material'
+import { DescriptionOutlined, Input, LocationCity, LocationCityOutlined, LocationOn, MergeTypeOutlined, PersonOutline, PhoneOutlined, PhotoCamera, PhotoCameraOutlined, PriceCheckOutlined } from '@mui/icons-material'
 import { Button, Select } from '@mui/material'
 import axios from 'axios'
 import React,{useState} from 'react'
 import './reusableForm.scss'
 import { countriesStates } from '../components/countriesAndStates/Countries'
+
+
+
+
+// console.log("value",countryName.attributes['value'])
 var states = []
-var countries = countriesStates.countries
-var stateMap = countries.forEach(country=>{
-  states.push(country.states)
-})
-console.log(states)
-const ReusableForm = () => {
+
+
+// var stateMap = countries.forEach(country=>{
+//   countryVar = country
+//   country.states.forEach(state=>{
+//     states.push(state)
+//   })
   
+// })
+// console.log(countryName.value)
+
+
+
+
+
+
+const ReusableForm = () => {
+  var select = document.getElementById('place')
+  function getStateByCountryName(countryName){
+    var result = []
+    var country = ""
+    var countries = countriesStates.countries
+    for(let i = 0;i<countries.length;i++){
+    country = countries[i].country
+    if(countryName===country){
+      countries[i].states.forEach(state=>{
+        result.push(state)
+      })
+    }
+    }
+  
+  
+    return result
+  }
+  var stateByCountry = getStateByCountryName(select?.value)
   const [modalData,setModalData] = useState({
     photos:[],
     price:"",
@@ -19,13 +52,14 @@ const ReusableForm = () => {
     type:"",
     tel:"",
     place:"",
+    state:"",
     description:""
   })
  
 
-  const {photos,price,likes,type,tel,place,description} = modalData
+  const {photos,price,state,likes,type,tel,place,description} = modalData
   
-  
+ 
 
   const uploadImage =  (e)=>{
     
@@ -43,11 +77,12 @@ const ReusableForm = () => {
   const handleChange = e =>{
     setModalData({...modalData,[e.target.name]:e.target.value})
     console.log("changed")
-    var select = document.getElementById('place')
+     
     var option  = document.getElementById('gov')
     console.log("select=",select.value,"option=",option.value)
   }
-
+  var option  = document.getElementById('gov')
+  // console.log("country",option.value)
   const handleSubmit = async (e) =>{
    
 
@@ -66,7 +101,9 @@ const ReusableForm = () => {
     formData.append('type',type)
     formData.append('tel',tel)
     formData.append('place',place)
+    formData.append('state',state)
     formData.append('description',description)
+    
     const token = localStorage.getItem('token')
     try {
       const config = {
@@ -117,27 +154,35 @@ const ReusableForm = () => {
                 <input type="file" multiple name="photos" onChange={(e)=>{uploadImage(e)}}/>
                 <label><MergeTypeOutlined/>type*</label>
                 <input type='text' name='type' value={type}  placeholder='s + 1' onChange={handleChange}required/>
-                <label><PriceCheckOutlined/>Prix*</label>
+                <label><PriceCheckOutlined/>Price*</label>
                 <input type='text' name='price' onChange={handleChange} placeholder='prix' value={price}  required />
-                <label><PhoneOutlined/>Téléphone*</label>
+                <label><PhoneOutlined/>Phone*</label>
                 <input type='tel' name='tel' value={tel} onChange={handleChange} placeholder='téléphone' required/>
-                <label><LocationOn/>Pays*</label>
+                <label><LocationOn/>Country*</label>
                 <select id='place' name='place' value={place} onChange={handleChange}>
-                   {countriesStates.countries.map(country=>{
-                      return  <option id='gov' key={country} value={country.country}>{country.country}</option>
+                   {
+                   
+                   countriesStates.countries.map((country)=>{
+                    
+                      return  <option id='gov' selected key={country.country} value={country.country}>{country.country}</option>
                       
                    })}
                 </select>
-                <select id='states' name='states' value={states} onChange={handleChange}>
-                   {countriesStates.countries.map(country=>{
-                      return  <option id='gov' key={country} value={country.country}>{country.country}</option>
-                      
-                   })}
-                </select>
+                <label><LocationCity/>State*</label>
+                 <select id='states' name='state' value={state} onChange={handleChange}>
+                  
+                   {
+                     
+                    stateByCountry.map(state=>{
+                     return <option id='go' key={state} value={state}>{state}</option>
+                    })
+                   }
+                </select> 
+              
                
                
                   
-               
+              
               
                 
                 <label><DescriptionOutlined/>Description*</label>

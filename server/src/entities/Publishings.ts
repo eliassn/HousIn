@@ -21,6 +21,8 @@ tel!:string
 @Column()
 place!:string
 @Column()
+state!:string
+@Column()
 description!:string
 @Column({ name: 'user_id' })
 userId!: number;

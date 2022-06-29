@@ -178,12 +178,12 @@ console.log(localStorage.getItem('likes'))
 
 
     
-        <li key={pub.id}>Prix <ArrowRightAltOutlined/> {`${pub.price} TND`}</li>
+        <li key={pub.id}>Price <ArrowRightAltOutlined/> {`${pub.price} TND`}</li>
         <li>Type <ArrowRightAltOutlined/> {pub.type}</li>
-        <li>Gouvernorat <ArrowRightAltOutlined/> {pub.place}</li>
-        <li> <span>Cité  <ArrowRightAltOutlined/> </span></li>
+        <li>Country <ArrowRightAltOutlined/> {pub.place}</li>
+        <li>state  <ArrowRightAltOutlined/>{pub.state}</li>
         <p>
-          <Typography gutterBottom variant='h5'>Déscription</Typography>
+          <Typography gutterBottom variant='h5'>Description</Typography>
        {pub.description}
         </p>
       </ul>

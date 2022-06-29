@@ -2,7 +2,7 @@ import axios from 'axios'
 import React,{useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { registerActions } from '../../redux/registerSlice'
-
+import { countriesStates } from '../countriesAndStates/Countries'
 const SignUp = () => {
   
 //user
@@ -12,12 +12,13 @@ const [formData,setFormData] = useState({
   phone:"",
   picture:[],
   job:"",
+  nationality:"",
   isCompany:false,
   email: "",
   password : "",
   password2 : ""
 })
-const {firstName,lastName,phone,picture,job,isCompany,email,password,password2} = formData
+const {firstName,lastName,phone,picture,job,nationality,isCompany,email,password,password2} = formData
 const uploadImage =  (e)=>{
     
   var fileArr = [e.target.files]
@@ -49,6 +50,7 @@ const handleChange = e => {
     formData.append('phone',phone)
     formData.append('picture',picture)
     formData.append('job',job)
+    formData.append('nationality',nationality)
     formData.append('isCompany',isCompany)
     formData.append('email',email)
     formData.append('password',password)
@@ -101,6 +103,16 @@ const handleChange = e => {
              <option value="true">entreprise</option>
              <option value="false">individuel</option>
            </select>
+           <label>Nationality</label>
+           <select id='place' name='nationality' value={nationality} onChange={handleChange}>
+                   {
+                   
+                   countriesStates.countries.map((country)=>{
+                    
+                      return  <option id='gov' selected key={country.country} value={country.country}>{country.country}</option>
+                      
+                   })}
+                </select>
            <input type="email" name="email" value={email} id="email" placeholder='email' onChange={handleChange} required/>
            <input type="password" name="password" value={password} id="password1" placeholder='password' onChange={handleChange} required/>
            <input type="password" name="password2" value={password2} id="password2" placeholder='confirm your password' onChange={handleChange} required/>

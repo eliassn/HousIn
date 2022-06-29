@@ -53,6 +53,7 @@ if(files.length > 0){
     pubs.price = req.body.price
     pubs.type = req.body.type
     pubs.place = req.body.place
+    pubs.state = req.body.state
     pubs.description = req.body.description
     pubs.tel = req.body.tel
     pubs.likes = []

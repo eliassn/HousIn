@@ -20,6 +20,8 @@ export class User{
     @Column()
     job!:string
     @Column()
+    nationality!:string
+    @Column()
     token!:string
     @Column({nullable:true})
     refreshToken!:string
