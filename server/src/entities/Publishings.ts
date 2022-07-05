@@ -26,6 +26,10 @@ state!:string
 description!:string
 @Column({ name: 'user_id' })
 userId!: number;
+@Column()
+user_first_name!:string
+@Column()
+user_last_name!:string
 @ManyToOne(()=>User,(user)=>user.pubs)
 @JoinColumn({name:"user_id"})
 user!:User

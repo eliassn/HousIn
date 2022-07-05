@@ -39,7 +39,6 @@ export const uploadS3 = (bucketName:string)=>
        const uploadImages= uploadS3("chelbi-housin").array("photos")   
 export const createPub = async (req:Request,res:Response,next:NextFunction) =>{
 
-    
 var pubs : any  = new Pubs()
 var files:any = req.files 
 if(files.length > 0){
@@ -49,7 +48,7 @@ if(files.length > 0){
 }
 // pubs.firstName = findUserFirstName(Number(req.params.user_id))
 // pubs.lastName = findUserLastName(Number(req.params.user_id))
-    
+  
     pubs.price = req.body.price
     pubs.type = req.body.type
     pubs.place = req.body.place
@@ -57,7 +56,12 @@ if(files.length > 0){
     pubs.description = req.body.description
     pubs.tel = req.body.tel
     pubs.likes = []
+    
     pubs.userId = req.params.user_id
+    var userRepo =  myAppDtataSource.getRepository(User)
+    var user = await userRepo.findOneBy({uid:pubs.userId})
+    pubs.user_first_name = user?.firstName
+    pubs.user_last_name = user?.lastName
     // var userRepo = myAppDtataSource.getRepository(User)
     //   var found = await userRepo.findOneById({uid:pubs.userId})
     //   pubs.firstName = found.firstName
@@ -69,6 +73,7 @@ if(files.length > 0){
           
         const savedPub = await myAppDtataSource.manager.save(pubs)
         console.log(savedPub.photoPreview)
+        
         if(savedPub) res.status(200).json({savedPub,files:req.files})
         console.log(req.body,req.files)
     } catch (error) {

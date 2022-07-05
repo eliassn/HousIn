@@ -618,13 +618,7 @@ export const countriesStates = {
       "numberCode": "372",
       "states": ["Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare", "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan", "Offaly", "Roscommon", "Sligo", "Tipperary", "Waterford", "Westmeath", "Wexford", "Wicklow"]
     },
-    {
-      "country": "Israel",
-      "alpha2Code": "IL",
-      "alpha3Code": "ISR",
-      "numberCode": "376",
-      "states": ["Central", "Haifa", "Jerusalem", "Northern", "Southern", "Tel Aviv"]
-    },
+   
     {
       "country": "Italy",
       "alpha2Code": "IT",

@@ -112,7 +112,7 @@ const ReusableForm = () => {
          "x-access-token": token
         }
       }
-      
+      var userId=localStorage.getItem('userId')
      
       var res = await axios.post(url,formData,config)
       console.log(res.data)
@@ -188,13 +188,8 @@ const ReusableForm = () => {
                 <label><DescriptionOutlined/>Description*</label>
                 <input type='text' name='description' placeholder='description' onChange={handleChange} value={description} required/>
             </div>
-           <Button type='submit'>Publier</Button>
-           <Button type='reset' onClick={()=>{
-             
-               var input = document.getElementsByTagName('input')
-               input.value= ""
-             
-           }}>Reset</Button>
+           <Button type='submit'>Publish</Button>
+           <Button type='reset'>Reset</Button>
         </form>
     </div>
   )

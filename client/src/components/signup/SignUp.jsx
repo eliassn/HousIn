@@ -16,7 +16,8 @@ const [formData,setFormData] = useState({
   isCompany:false,
   email: "",
   password : "",
-  password2 : ""
+  password2 : "",
+ 
 })
 const {firstName,lastName,phone,picture,job,nationality,isCompany,email,password,password2} = formData
 const uploadImage =  (e)=>{
@@ -54,6 +55,7 @@ const handleChange = e => {
     formData.append('isCompany',isCompany)
     formData.append('email',email)
     formData.append('password',password)
+  
     // const newUser = {
     //   firstName,
     //   lastName,
@@ -89,6 +91,7 @@ const handleChange = e => {
            <input type="text" name="firstName" value={firstName} id="fname" placeholder='nom' onChange={handleChange} required/>
            <input type="text" name="lastName" value={lastName} id="lname" placeholder='prénom' onChange={handleChange} required/>
             <input type="tel" name="phone" value={phone} id="tel" placeholder='téléphone' onChange={handleChange} required/>
+            {/* <input type="hidden" name="messageId" value={} /> */}
            <label>photo de profil</label>
            <input type="file" name="picture" onChange={(e)=>uploadImage(e)}/>
            {/* <select name="" onChange={handleChange}  id="">

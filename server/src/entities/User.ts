@@ -7,6 +7,7 @@ import { Pubs } from './Publishings'
 export class User{
     @PrimaryGeneratedColumn("increment")
     uid!:number
+   
     @Column()
     firstName!:string
     @Column()

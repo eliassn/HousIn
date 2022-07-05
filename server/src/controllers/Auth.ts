@@ -24,7 +24,7 @@ if(files.length > 0){
         user.job = req.body.job
         user.nationality = req.body.nationality
         user.isCompany = req.body.isCompany
-       
+        
         const token = jwt.sign(
           { user_id: user.uid, email:user.email },
           process.env.TOKEN_KEY as string,

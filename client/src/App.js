@@ -15,8 +15,16 @@ import Timeline from './components/timeline/Timeline'
 import CssGridTest from './components/CssGridTest'
 import Messages from './components/messages/Messages'
 
-
+const chooseHeader= ()=>{
+  if(window.location.pathname.split('/')[1]==="" ||window.location.pathname.split('/')[1]==="login" ||window.location.pathname.split('/')[1]==="signup" ){
+    localStorage.clear()
+  }
+}
 const App = () => {
+chooseHeader()
+  // window.addEventListener('close',function(){
+  //   localStorage.clear()
+  // })
   const isRegistered = useSelector(state=>state.register.isRegistered)
   // const isLoggedIn = useSelector(state=>state.login.isLoggedIn)
   // const isLoggedOut = useSelector(state=>state.logout.isLoggedOut)
@@ -46,7 +54,7 @@ const App = () => {
       
        <Route path="/login" element={  <Login/>}/>
       
-       <Route path="/inbox" element={  <Messages/>}/>
+       <Route path=":user_id/inbox" element={  <Messages/>}/>
        <Route path="signup" element={ <SignUp/>}/>
        <Route path="*" element={<Error/>}/>
        </Routes>

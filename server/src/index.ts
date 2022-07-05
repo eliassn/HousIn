@@ -8,6 +8,7 @@ import { filters } from './routes/Filters'
 import pubRouter from './routes/pubs'
 import http from 'http'
 import {Server} from 'socket.io'
+import Os from 'os'
 //starting http server
 
 const app = express()
@@ -15,7 +16,7 @@ const port = process.env.PORT || 9000
 const server = http.createServer(app)
 
 //socket
-const io = new Server(server,{
+export const io = new Server(server,{
   cors:{
     origin:"*",
     methods:["GET","POST"]
@@ -23,7 +24,12 @@ const io = new Server(server,{
 })
 server.listen(port)
 io.on('connection',(socket)=>{
-  console.log("socket connected succcessfully...")
+  console.log("successfully connected")
+ socket.emit("chat-message","hello world")
+ socket.on("send-chat-message",(message,room,id,userId,receiverId)=>{
+  console.log("client-message",message,room,id,userId,receiverId)
+  socket.broadcast.to(receiverId).emit('receive-message',message)
+ })
 })
 
 //wrapper function
@@ -31,7 +37,7 @@ function main(){
     dotenv.config()
     myAppDataSource.initialize()
     .then(() => {
-        console.log("Data Source has been initialized!")
+        console.log("Data Source has been initialized!","logicalCount: ",Os.cpus().length)
     })
     .catch((err) => {
         console.error("Error during Data Source initialization", err)

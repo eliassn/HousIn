@@ -23,6 +23,6 @@ pubRouter.post('/:user_id/user',uploadS3("chelbi-housin").array('photos'),verify
 pubRouter.put('/:user_id/likes',handleLikes)
 pubRouter.put('/:user_id/dislikes',handleDisLikes)
 // pubRouter.get('/likes',getLikesByPbId)
-pubRouter.delete('/:user_id/delete',deletePub)
+pubRouter.delete('/:user_id/delete',verifyToken,deletePub)
 
 export default pubRouter
