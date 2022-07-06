@@ -8,7 +8,7 @@ import path from 'path'
 import dotenv from 'dotenv'
 import AWS from 'aws-sdk'
 import multerS3 from 'multer-s3'
-import { findUserFirstName, findUserLastName } from '../helpers/helpers'
+import { findUserFirstName } from '../helpers/helpers'
 
 
 dotenv.config()
