@@ -13,12 +13,12 @@ try {
     console.error(error)
 }
 }
-export async function findUserLastName(id:number){
-    var userRepo = myAppDtataSource.getRepository(User)
-    var userByid : any = await userRepo.findOneBy({uid:id})
-    try {
-        return userByid.lastName
-    } catch (error) {
-        console.error(error)
-    }
-    }
+// export async function findUserLastName(id:number){
+//     var userRepo = myAppDtataSource.getRepository(User)
+//     var userByid : any = await userRepo.findOneBy({uid:id})
+//     try {
+//         return userByid.lastName
+//     } catch (error) {
+//         console.error(error)
+//     }
+//     }
