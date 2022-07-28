@@ -4,7 +4,7 @@ import { verifyToken } from "../controllers/Auth";
 
 export const getters = Router()
 getters.get('/allUsers',verifyToken,all)
-getters.get('/allPubs',verifyToken,getAllPubs)
+getters.get('/allPubs',getAllPubs)
 getters.get('/:user_id',verifyToken,getUserById)
-getters.get('/',verifyToken,getPubsByLocation)
+getters.get('/',getPubsByLocation)
 getters.get('/:user_id/user',verifyToken,getPubsByUserId)

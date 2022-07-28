@@ -1,11 +1,21 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import { useSelector,useDispatch  } from 'react-redux'
 import axios from 'axios'
 import { loginActions } from '../../redux/loginSlice'
-import {LogoutOutlined,HomeOutlined,ChatBubbleOutline,AccountBoxOutlined,} from '@mui/icons-material'
+import {LogoutOutlined,Search,HomeOutlined,ChatBubbleOutline,AccountBoxOutlined,} from '@mui/icons-material'
 const Header = () => {
- 
+ useEffect(()=>{
+  async function fetchSearch(){
+  var search = document.getElementById('search') 
+  var place  = search?.value
+  var price
+  var url = `http://localhost:9000/?place=${place}&&price=${price}`
+  var res = await axios.get(url)
+  console.log(res)
+  }
+  fetchSearch()
+ },[])
   var pathName = window.location.pathname.split('/')
   var path = pathName[1]
   console.log(path)
@@ -38,6 +48,11 @@ const Header = () => {
      <header className='header'>
          <div>
              <Link className='links' to="/">Home</Link>
+         </div>
+         <div className='searchFilter' style={{display:"flex",alignItems:"center",justifyContent:"center",backgroundColor:"#fff",borderRadius:"10px"}}>
+          <Search/>
+         <input type="search" name="search" id="search" style={{marginLeft:"0%",marginRight:"5px",border:"none"
+         ,height:"100%",outline:"none"}}/>
          </div>
          <nav className="navbar">
              <ul>

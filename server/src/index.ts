@@ -5,32 +5,19 @@ import myAppDataSource from './db-config/db'
 import { router } from './routes/Auth'
 import { getters } from './routes/Getters'
 import { filters } from './routes/Filters'
+import messageRouter  from './routes/messages'
 import pubRouter from './routes/pubs'
+import conversationRouter from './routes/conversation'
 import http from 'http'
-import {Server} from 'socket.io'
 import Os from 'os'
 //starting http server
 
 const app = express()
 const port = process.env.PORT || 9000
 const server = http.createServer(app)
-
-//socket
-export const io = new Server(server,{
-  cors:{
-    origin:"*",
-    methods:["GET","POST"]
-  }
-})
 server.listen(port)
-io.on('connection',(socket)=>{
-  console.log("successfully connected")
- socket.emit("chat-message","hello world")
- socket.on("send-chat-message",(message,room,id,userId,receiverId)=>{
-  console.log("client-message",message,room,id,userId,receiverId)
-  socket.broadcast.to(receiverId).emit('receive-message',message)
- })
-})
+
+
 
 //wrapper function
 function main(){
@@ -46,7 +33,8 @@ function main(){
 app.use(cors())
 
 app.use(express.json({
-  limit:'50mb'
+  limit:'50mb',
+
 }))
 app.use(express.urlencoded(
     {
@@ -59,6 +47,8 @@ app.use(express.urlencoded(
 app.use(router)
 app.use(getters)
 app.use(pubRouter)
+app.use(conversationRouter)
+app.use(messageRouter)
 
 
 

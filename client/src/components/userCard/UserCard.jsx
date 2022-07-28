@@ -84,7 +84,7 @@ var token = localStorage.getItem('token')
   function handleContactRedirection (e){
     e.preventDefault()
     var receiverId = localStorage.setItem('receiver',pub.userId)
-    window.location.replace(`http://localhost:3000/${userId}/inbox`)
+    window.location.replace(`${userId}/inbox`)
 
   }
 //  

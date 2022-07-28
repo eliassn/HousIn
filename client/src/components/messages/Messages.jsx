@@ -1,57 +1,82 @@
 import React from 'react'
 import {uid} from 'uid'
+import './messages.scss'
 import {io} from 'socket.io-client'
-var socket =  io('http://localhost:9000')
+import Conversations from '../conversations/Conversations'
+import Message from '../message/Message'
+var socket =  io('http://localhost:5000')
 const Messages = () => {
-  var roomId = uid(16)
-  function displayMessage(textMessage){
-  var display = document.createElement('p')
-  display.innerText = textMessage
-  console.log("text= ",textMessage)
-  return  display.innerText
-  }
-  var messageInput = document.getElementById('messageInput')
- var messageingForm = document.getElementById('mForm')
-  socket.on("chat-message",(data)=>{
-    // console.log("socketData ",data)
-  
-  })
-  messageingForm?.addEventListener("submit",(e)=>{
-    e.preventDefault()
-    var senderId = localStorage.getItem('userId')
-    var receiverId = localStorage.getItem('receiver')
-    const message = messageInput?.value
-    var id = socket.id
-    socket.emit("send-chat-message",message,roomId,id,senderId,receiverId)
-    //console.log("my-message",message,id)
-    var msg = "ok"
-    const p = document.createElement('p')
-    socket.on('receive-message',(Rmessage)=>{
-    // msg = Rmessage
-    
-    p.innerHTML = `<span>${msg} </span>`
+
+
+  return(
+    <>
+<div className='messenger'>
+<div className="chatMenu">
+  <div className="chatMenuWrapper">
+    <input type="text" placeholder='search users' className='chatMenuInput' />
+  <Conversations/>
+  <Conversations/>
+
+  <Conversations/>
+
+  <Conversations/>
+
+  <Conversations/>
+
+  </div>
+</div>
+<div className="chatBox">
+  <div className="chatBoxWrapper">
+    <div className="chatboxTop">
+      <Message/>
+      <Message own={true}/>
+
+      <Message/>
+      <Message own={true}/>
+
+<Message/>
+<Message own={true}/>
+
+<Message/>
+<Message own={true}/>
+
+<Message/>
+<Message own={true}/>
+
+<Message/>
+<Message own={true}/>
+
+<Message/>
+<Message own={true}/>
+
+<Message/>
+<Message own={true}/>
+
+<Message/>
+<Message own={true}/>
+
+<Message/>
+<Message own={true}/>
+
+<Message/>
      
-    })
-   
-    const me = document.getElementById('me')
-    me?.appendChild(p)
-  
-    // messageInput.value=''
-   
-  })
-  return (
-    <div>
-      <div id="me" className="me">
-        <form id="mForm">
-        <input id="messageInput" type="text"  style={{height:"100px",marginTop:"35px"}} />
-        {/* <input id="room" type="hidden" value={roomId} /> */}
-        <button type="submit" >send</button>
-        </form>
-      </div>
-      <p className='my-message'></p>
-      <div className="him"></div>
     </div>
+    <div className="chatboxBottom">
+      <textarea className='chatMessageInput' placeholder='write a message ...'></textarea>
+      <button className="chatSubmitButton">Send</button>
+    </div>
+
+  </div>
+</div>
+<div className="chatOnline">
+  <div className="onlineWrapper">
+    online
+  </div>
+</div>
+</div>
+    </>
   )
 }
+ 
 
 export default Messages
